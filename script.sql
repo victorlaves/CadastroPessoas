@@ -1,0 +1,26 @@
+CREATE DATABASE Cadastro
+USE Cadastro
+
+Create Table Pessoa(
+	Codigo VARCHAR(36) PRIMARY KEY,
+	Nome VARCHAR(300),
+	CpfCnpj VARCHAR(14) NOT NULL,
+	Tipo INT NOT NULL,
+	DataNascimento DATETIME,
+	Ativo BIT NOT NULL,
+	DataHoraCriacao DATETIME NOT NULL,
+)
+
+CREATE TABLE Endereco(
+	Codigo VARCHAR(36) PRIMARY KEY,
+	CodigoPessoa VARCHAR(36) NOT NULL,
+	Logradouro VARCHAR(300) NOT NULL,
+	Numero VARCHAR(10) NOT NULL,
+	Complemento VARCHAR(10) NOT NULL,
+	Bairro VARCHAR(150) NOT NULL,
+	Cep VARCHAR(8) NOT NULL,
+	Cidade VARCHAR(150) NOT NULL,
+	Estado VARCHAR(2) NOT NULL,
+	CONSTRAINT fk_Endereco_Pessoa FOREIGN KEY (CodigoPessoa)
+	REFERENCES Pessoa(Codigo)
+)
